@@ -5,40 +5,52 @@
 
 class Rental_Income_Calc:
     def __init__(self):
-        pass
-    
+        self.monthly_income = 0
+        self.monthly_expenses = 0
+        self.total_investment = 0
+        self.annual_cashflow = 0
+
     # Income function    
     def income(self):
-        self.user_income = float(input("Please enter the monthly income you generate from the from the property"))
-        self.monthly_income = self.user_income
+        user_income = float(input("Please enter the monthly income you generate from the from the property"))
+        self.monthly_income = user_income
         return self.monthly_income
         
     # Expense function
     def expenses(self):
         print("Please give me some information about your monthly expenses")
-        self.property_tax = float(input("how much do you pay in property tax"))
-        self.insurance = float(input("how much do you pay for insurance"))
-        self.mortage = float(input("how much do you pay for your mortage"))
-        self.ultilies = float(input("how much do you pay in utilites"))
+        property_tax = float(input("how much do you pay in property tax"))
+        insurance = float(input("how much do you pay for insurance"))
+        mortage = float(input("how much do you pay for your mortage"))
+        ultilies = float(input("how much do you pay in utilites"))
         
-        self.monthly_Expenses = self.property_tax + self.insurance + self.mortage + self.ultilies
-        return self.monthly_Expenses
+        self.monthly_expenses = property_tax + insurance + mortage + ultilies
+        return self.monthly_expenses
         
     # Cashflow function
     def cashflow_calc(self):
         self.expenses()
-        self.cashflow = self.monthly_income - self.monthly_Expenses
-        self.annual_cashflow = self.cashflow * 12
+        cashflow = self.monthly_income - self.monthly_expenses
+        self.annual_cashflow = cashflow * 12
         return self.annual_cashflow      
-    # CashonCash Funtion
+    
+    # CashonCash Function
     def cashoncash(self):
-        self.downPayment = float(input("how much did you put down on your loan"))
-        self.closingCost = float(input("how much were the closing cost"))
-        self.refirb = float(input("how much did you spend on refirishing the property"))
-        self.total_investment = self.downPayment + self.closingCost + self.refirb
+        downPayment = float(input("how much did you put down on your loan"))
+        closingCost = float(input("how much were the closing cost"))
+        refirb = float(input("how much did you spend on refirishing the property"))
+        self.total_investment = downPayment + closingCost + refirb
         return self.total_investment
+    
     # ROI calculations
     def roi_calculations(self):
-        self.cash_ROI = self.annual_cashflow / self.total_investment
-        return self.cash_ROI
+        cash_ROI = self.annual_cashflow / self.total_investment
+        return cash_ROI
+
+# Create an instance of the class and call the methods
+rental_calc = Rental_Income_Calc()
+rental_calc.income()
+rental_calc.cashflow_calc()
+rental_calc.cashoncash()
+print(rental_calc.roi_calculations())
          
